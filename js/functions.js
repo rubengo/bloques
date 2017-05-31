@@ -1,4 +1,5 @@
 /* Variables globales */ 
+
 // Variables para definir el Canvas.
 var canvas;
 var ctx;
@@ -20,10 +21,18 @@ var paddleX;
 var paddleY;
 
 // Variables para controlar el nivel de juego en que se encuentra el jugador.
-var level;
+localStorage.setItem('level', 1);
+var level = localStorage.getItem('level');
 
 // variable para resetear inicio del movimiento de l apaleta
-var interval;
+var intervalId;
+
+var bloquesCount = 0;
+
+var points = 0;
+
+var pausa = false;
+var pausaBtn = $('#pausa');
 
 // Variables per a reproducir el audio. No estan definidas porqu� en funci�n de la soluci�n aportada pueden hacer falta m�s o menos variables.
 // ...
@@ -31,8 +40,23 @@ var interval;
 loadData();
 
 $('#start').on('click', function(e) {
-  clearInterval(interval);
+  $('.perdiste').removeClass('show');
+  clearInterval(intervalId);
   init_game();
+  pausa = false;
+  pausaBtn.html('Pausa');
+})
+
+pausaBtn.on('click', function(e) {
+  pausa = !pausa;
+  if (pausa) {
+    clearInterval(intervalId);
+    pausaBtn.html('Continua');
+  }
+  else {
+    pausaBtn.html('Pausa');
+    intervalId = setInterval(draw, interval);
+  }
 })
 
 $(document).on('keydown', function(e){
@@ -75,7 +99,11 @@ En esta funci�n pueden pasar diferentes ccosas:
     2b. Se ha acabo el juego. Se ha de mostrar al usuario el mensaje de finalizaci�n del juego.
 */
 function end_of_game(){
-
+  if (y > 500) {
+    clearInterval(intervalId);
+    $('.mensaje').html('Perdiste!');
+    $('.mensaje').addClass('show');
+  }
 }
 /*	
 En esta funcion se tienen que dibujar los recuadros que forman parte de un nivel.
@@ -91,6 +119,7 @@ function draw_level(level) {
     if (active_level[i].active){
       //Dibujamos solo los cuadros que están activos.
       square(active_level[i].color, active_level[i].x, active_level[i].y, active_level[i].w, active_level[i].h);
+      bloquesCount++;
     }
   }
 }
@@ -132,12 +161,29 @@ function ball_touch_square (level) {
       var bottomX = parseInt(s.x) + parseInt(s.w);
       var topY = parseInt(s.y);
       var bottomY = parseInt(s.y) + parseInt(s.h);
+      // Aquí toca un cuadro 
       if (x >= topX && x <= bottomX && y >= topY && y <= bottomY) {
         s.active = false;
         dy = 5;
+        bloquesCount--;
+        points += (level * 100);
       }
     }
   }
+  if (bloquesCount === 0 && level === 1) {
+    clearInterval(intervalId);
+    localStorage.setItem('level', 2);
+    // resetBloques();
+    intervalId = setInterval(draw, interval);
+  }
+  else if (bloquesCount === 0 && level === 2) {
+    setTimeout(function () {
+      clearInterval(intervalId);
+    }, 200);
+    $('.mensaje').html('Ganaste!');
+    $('.mensaje').addClass('show');
+  }
+  $('.points').html(points);
 }
 
 /*	
@@ -158,15 +204,17 @@ function clear() {
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
 }
 
-function draw(){
-
+function draw () {
+  var lvl = parseInt(localStorage.getItem('level'));
   soundEfx = document.getElementById("soundEfx");
     
   // Limpiamos el Canvas antes de dibujarlo de nuevo.
   clear();
-    
+  
+  bloquesCount = 0;
+
   // Dibujamos los recuadros de un nivel.
-  draw_level(level);
+  draw_level(lvl);
 
   // Dibujamos la pelota con un tama�o de 10 px.
   circle(x, y, 10);
@@ -180,7 +228,7 @@ function draw(){
     Ahora controlamos si la pelota ha tocado cualquiera de los cuadros.
     En caso de que la pelota toque uno de los cuadros, el cuadro dejar� de mostrarse y se deber� actualizar su estado.
   */
-  ball_touch_square(level);
+  ball_touch_square(lvl);
       
   // Verificamos si la pelota ha tocado la pala.
   // ball_touch_padddle();
@@ -200,7 +248,8 @@ function draw(){
 Funci�n para inicializar el juego.
 Esta funci�n puede ser modificada cuando se a�adan los controles para inicializar y pausar el juego.
 */
-function init_game(){
+function init_game () {
+  var lvl = parseInt(localStorage.getItem('level'));
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d"); //Siempre requerida
   interval = 15;
@@ -217,15 +266,25 @@ function init_game(){
   paddleX = 300;
   paddleY = 500;
 
-  // El juego se inicia en el nivel 1.
-  level = 1;
+  resetBloques();
 
   // Pintamos el Canvas.
-  draw();
+  draw(lvl);
 
   // Cremoas un invertablo para dibujar el canvas cada 15 milisegundos ( que es periodo defenido para el intervalo ).
-interval = setInterval(draw, interval);
+  intervalId = setInterval(draw, interval);
 
+}
+
+function resetBloques () {
+  var lvl = parseInt(localStorage.getItem('level'));
+  if (lvl == 1) active_level = squares_level1;
+  if (lvl == 2) active_level = squares_level2;
+
+  var N = active_level.length;
+  for (i=0; i<N ; i++) {
+    active_level[i].active = true;
+  }
 }
 
 function loadData () {

@@ -60,7 +60,8 @@
         <div class="row">
           <div class="col-md-7 col-xs-12">
             <canvas id="canvas" class="patron" style="border:1px #D5D5D5 solid;" width="600" height="520"></canvas>
-            <div id="triangulo"><a href="#"  data-tooltip="Pulse las teclas Left y Right para mover la paleta" >!</a></div>  
+            <div id="triangulo"><a href="#"  data-tooltip="Pulse las teclas Left y Right para mover la paleta" >!</a></div>
+            <div class="mensaje"></div>
             <audio id="soundEfx" src="pop.wav" style="display: none;"></audio>
         </div>
             
@@ -73,13 +74,13 @@
                 <div class="col-md-12 col-xs-12">
                   <div class="button btn btn-success btn-block" id="start"> 
                       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>Inicia partida</div>
-                   <div class="button btn btn-warning btn-block">Pausa</div> 
+                   <div id="pausa" class="button btn btn-warning btn-block">Pausa</div> 
                 </div> 
                 
                 
                 <div class="col-md-12 col-xs-12 puntos">
                   <div><h4>Mejor puntuaci&oacute;n ( m&aacute;s baja ): 10.000 puntos</h4></div>
-                  <div><h4>Puntuaci&oacute;n actual: 1200</h4></div>
+                  <div><h4>Puntuaci&oacute;n actual: <span class="points"></span></h4></div>
                 </div>
 
                 <div class="col-md-12 col-xs-12" id="bocadillo">
