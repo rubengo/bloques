@@ -1,0 +1,4 @@
+*.doc
+*.doc#
+*.pdf
+_DS_Store

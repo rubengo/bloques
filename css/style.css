@@ -1,0 +1,369 @@
+body{
+	margin:10px 10%;
+    background:url("/imagenes/sea-foam-and-sand.jpg");
+}
+header{
+	text-align:center; 
+	background-color:black;
+	color:white;
+	padding:10px;
+	margin-bottom: 10px;
+}
+
+
+.button{
+	padding:15px;
+	color:white;
+	text-align:center;
+	margin-bottom: 2px;
+	font-size:20px;
+	
+}
+
+#canvas{
+    -webkit-box-shadow: 0 0 10px rgb(0,0,0);
+    -moz-box-shadow: 0 0 10px rgb(0,0,0);
+    box-shadow: 0 0 10px rgb(0,0,0);
+    
+    
+}
+
+.encabezado{
+    background-color: rgba(217, 185, 135, .5);
+    margin-bottom: 1.4em;
+    margin-top: 50px;
+
+
+}
+
+.puntos{
+    background-color:bisque;
+    margin-top: 20px;
+    padding: 20px;
+    border: 15px solid;
+    border-image-source: url("/imagenes/wood.png");
+    border-image-slice: 10;
+    border-radius: 20px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    -webkit-box-shadow: 0 0 8px rgba(0,0,0, .5);
+    -moz-box-shadow: 0 0 8px rgba(0,0,0, .5);
+    box-shadow: 0 0 8px rgba(0,0,0, .5);
+   
+}
+
+/* h1{
+    text-shadow: #6374AB -2px 2px 3px;
+} */
+
+.cajatxt{
+    margin-bottom: 30px;
+}
+
+h2 {
+        position: relative;
+        font-size: 80px;
+        font-family: sans-serif;
+        font-weight: 800;
+        letter-spacing: -5px;
+        color: rgba(215,211,228,0.82);
+    }
+    h2:after {
+        content: "2D Maze";
+        position: absolute;
+        left: 3px;
+        top: 5px;
+        color: rgba(0,18,255,0.6);
+    }
+    h2:before {
+        content: "2D Maze";
+        position: absolute;
+        left: 5px;
+        top: 11px;
+        color: red;
+    }
+
+h3{
+    
+}
+/* =================== Esquinas redondedeadas, sombras, Gradientes, formas con css3  ======================== */
+
+
+#bocadillo {
+    padding: 10px;
+    width: 220px;
+    border-radius: 10px;
+    font-family: "trebuchet ms", tahoma, verdana, sans­serif;
+    font-size: 1.4em;
+    margin-top: 30px;
+    -webkit-box-shadow: 0 0 8px rgba(0,0,0, .7);
+    -moz-box-shadow: 0 0 8px rgba(0,0,0, .7);
+    box-shadow: 0 0 8px rgba(0,0,0, .7);    
+    background: #f80; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, #f80,  #FFC961); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, #f80  #FFC961); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, #f80,  #FFC961); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(90deg, #f80,  #FFC961); /* Standard syntax */  
+    -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+    transition: width 2s;
+}
+
+#bocadillo:hover{
+    width: 300px;
+}
+
+#bocadillo:before {
+    content:"";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-right: 30px solid #f80;
+    border-bottom: 20px solid transparent;
+    margin: 30px 0 0 -38px;
+}
+
+.texto-3d {
+        color: #842727;
+        text-shadow: #ff5000 1px -1px 0,
+                     #ff5000 2px -2px 0,
+                     #ff5000 3px -3px 0;
+    }
+
+.elemento {
+        background-color: black;
+        color: white;
+        width: 50px;
+        padding: 0 30px;
+        box-sizing: border-box;
+    }
+
+/* =============================Forma con css=========================================== */
+#triangulo{
+    width: 0;
+    height: 0;
+    border-bottom: 30px solid #ff5000;
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
+    margin:0 0 0 20px;
+
+}
+
+/* #triangulo:before{ 
+    content:attr(title); 
+    display:none; 
+}
+
+#triangulo:hover::before{ 
+    width:400px; 
+    display:block; 
+    background:yellow; 
+    border:1px solid black; 
+    padding:8px;
+    margin:25px 0 0 10px;
+}
+
+#triangulo:hover{ 
+    z-index:10; 
+    position:relative; 
+} */
+
+
+/* =============================Tansición=========================================== */
+
+.bola {
+        background: firebrick;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px ;
+        position : absolute;
+        bottom: 0;
+        left: 45%;
+        animation-name: contoneo;
+        animation-duration: 1s;
+        animation-iteration-count : infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-out;
+        animation-delay: 0;
+        animation-play-state: running;
+        animation-fill-mode: none;
+ 
+    }
+ 
+    @keyframes contoneo {
+        from {
+            bottom: 0; height: 40px;
+        }
+        10% {
+            bottom: 0; height: 80px;
+        }
+        to {
+            bottom: 50%;
+        }
+    }
+
+/* =============================Tolltip=========================================== */
+a:link {
+         position: relative;
+         text-decoration: none;
+    }
+    a:before {
+         content : "";
+         position: absolute;
+         border-top: 20px solid #0090ff;
+         border-left: 30px solid transparent;
+         border-right : 30px solid transparent;
+         display: none;
+         top: -18px;
+         left: -26px;
+    }
+     a:after {
+         content: attr(data-tooltip);
+         position: absolute;
+         color:white;
+         top: -35px;
+         left: -26px;
+         background: #0090ff;
+         padding : 5px 15px;
+         -webkit-border-radius: 10px;
+         -moz-border-radius : 10px;
+         border-radius: 10px;
+         white-space: nowrap;
+         display: none;
+     }
+     a:hover:after, a:hover:before {
+        display: block;
+     }
+
+/* ============================= Patrones =========================================== */
+
+.patron{
+     background:
+        radial-gradient(#264d00 15%, transparent 16%) 0 0,
+        radial-gradient(#264d00 15%, transparent 16%) 8px 8px,
+        radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+        radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+        background:
+        -webkit-radial-gradient(#264d00 15%, transparent 16%) 0 0,
+        -webkit-radial-gradient(#264d00 15%, transparent 16%) 8px 8px,
+        -webkit-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+        -webkit-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+        background:
+        -moz-radial-gradient(#264d00 15%, transparent 16%) 0 0,
+        -moz-radial-gradient(#264d00 15%, transparent 16%) 8px 8px,
+        -moz-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+        -moz-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+        background:
+        -o-radial-gradient(#264d00 15%, transparent 16%) 0 0,
+        -o-radial-gradient(#264d00 15%, transparent 16%) 8px 8px,
+        -o-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+        -o-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+        background-color:#408000;
+        background-size:16px 16px;
+        color: #92b558;
+}
+
+
+/* ========================= @Font-face =============================== */
+
+
+@font-face {
+    font-family: 'Satisfy', cursive;
+   src: url(/font/Satisfy);
+}
+
+.myfont {
+   font-family: Satisfy;
+    font-size: 2.5em;
+    padding: 10px;
+    color: azure;
+    text-shadow: 2px 2px 2px #CC3300;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================== Transformacion ====================================== */
+
+     .reversa {
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+    /* Voltear Imagen */
+    #ej1_contenedor {
+        position: relative;
+        margin: 10px auto;
+        width: 450px;
+        height: 281px;
+        z-index: 1;
+    }
+    #ej1_contenedor {
+        -webkit-perspective: 1000px;
+        -moz-perspective: 1000px;
+        -o-perspective: 1000px;
+        perspective: 1000px;
+    }
+    #ej1_img {
+        width: 100%;
+        height: 100%;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transition: all 1.0s linear;
+        -moz-transform-style: preserve-3d;
+        -moz-transition: all 1.0s linear;
+        -o-transform-style: preserve-3d;
+        -o-transition: all 1.0s linear;
+        transform-style: preserve-3d;
+        transition: all 1.0s linear;
+    }
+    #ej1_contenedor:hover #ej1_img, #ej1_contenedor.hover_effect #ej1_img {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+ 
+        -webkit-box-shadow: -5px 5px 5px #aaa;
+        -moz-box-shadow: -5px 5px 5px #aaa;
+        box-shadow: -5px 5px 5px #aaa;
+    }
+    .parte {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    .parte.trasera {
+        display: block;
+        -webkit-transform: rotateY(180deg);
+        -webkit-box-sizing: border-box;
+        -moz-transform: rotateY(180deg);
+        -moz-box-sizing: border-box;
+        -o-transform: rotateY(180deg);
+        -o-box-sizing: border-box;
+        transform: rotateY(180deg);
+        box-sizing: border-box;
+        padding: 90px;
+        color: white;
+        text-align: center;
+        background-color: #f95a5a;
+    }
+    /* Rotar texto */
+    .rotar_txt {
+      -moz-transform: rotate(12deg);
+      -webkit-transform: rotate(12deg);
+      transform: rotate(12deg);
+    }
